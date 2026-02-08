@@ -3,6 +3,7 @@
 import Image from "next/image";
 
 import { BlurFade } from "@/components/ui/blur-fade";
+import { Tooltip } from "@/components/ui/tooltip-card";
 
 export function About() {
   return (
@@ -30,14 +31,28 @@ export function About() {
               <p className="text-base leading-relaxed text-neutral-300">
                 I&apos;m <span className="text-white">@aflekkas</span>, a
                 founder who built a company doing{" "}
-                <a
-                  href="https://mediamaxxing.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white underline underline-offset-4 hover:text-neutral-200"
+                <Tooltip
+                  content={
+                    <>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="/mediamaxxing.png"
+                        alt="mediamaxxing.com"
+                        className="w-full rounded-sm"
+                      />
+                      <p className="mt-2 text-xs text-neutral-400">mediamaxxing.com</p>
+                    </>
+                  }
                 >
-                  above 6 figures in revenue a month
-                </a>
+                  <a
+                    href="https://mediamaxxing.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white underline underline-offset-4 hover:text-neutral-200"
+                  >
+                    above 6 figures in revenue a month
+                  </a>
+                </Tooltip>
                 , gaining millions of views every month.
               </p>
             </BlurFade>

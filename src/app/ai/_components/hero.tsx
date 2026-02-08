@@ -113,7 +113,7 @@ export function Hero() {
       </div>
 
       {/* Video section */}
-      <div className="relative z-10 mx-auto max-w-5xl px-6 pb-32">
+      <div className="relative z-10 mx-auto max-w-5xl px-6 pb-16">
         <div className="relative overflow-hidden rounded-2xl border border-white/10">
           <iframe
             src={HERO_VIDEO_URL}
