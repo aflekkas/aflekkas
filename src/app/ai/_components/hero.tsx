@@ -10,16 +10,16 @@ import { cn } from "@/lib/utils";
 import { SKOOL_URL, HERO_VIDEO_URL } from "@/lib/constants/links";
 
 const headlines = [
-  "a $50K/mo business",
-  "your content engine",
+  "a $50K/mo AI business",
+  "your AI content engine",
   "your own AI tools",
-  "a tireless employee",
-  "a better developer",
-  "your unfair advantage",
-  "automated workflows",
-  "a one-person empire",
-  "what others outsource",
-  "your sales machine",
+  "a tireless AI employee",
+  "a better AI developer",
+  "your unfair AI advantage",
+  "automated AI workflows",
+  "a one-person AI empire",
+  "what others outsource, with AI",
+  "your AI sales machine",
 ];
 
 function shuffleArray<T>(arr: T[]): T[] {
@@ -96,7 +96,7 @@ export function Hero() {
         </p>
 
         {/* CTAs */}
-        <div className="mt-12 flex flex-col items-start gap-4 sm:flex-row">
+        <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row">
           <RainbowButton asChild size="lg">
             <a href={SKOOL_URL} target="_blank" rel="noopener noreferrer">
               Join The 1%
