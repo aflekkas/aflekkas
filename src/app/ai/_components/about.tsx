@@ -28,16 +28,24 @@ export function About() {
           <div className="space-y-5">
             <BlurFade delay={0.1} inView>
               <p className="text-base leading-relaxed text-neutral-300">
-                I&apos;m <span className="text-white">@aflekkas</span> — a
-                founder who built a $50K/mo company almost entirely with AI. No
-                dev team, no huge budget, no traditional playbook.
+                I&apos;m <span className="text-white">@aflekkas</span>, a
+                founder who built a company doing{" "}
+                <a
+                  href="https://mediamaxxing.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white underline underline-offset-4 hover:text-neutral-200"
+                >
+                  above 6 figures in revenue a month
+                </a>
+                , gaining millions of views every month.
               </p>
             </BlurFade>
 
             <BlurFade delay={0.2} inView>
               <p className="text-base leading-relaxed text-neutral-300">
                 I went from zero to 2M+ monthly views and a profitable business
-                by treating AI as a co-founder — not a toy. Every workflow,
+                by treating AI as a co-founder, not a toy. Every workflow,
                 every piece of content, every system was built with the tools
                 and strategies I now share inside The 1%.
               </p>

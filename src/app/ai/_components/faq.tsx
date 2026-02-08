@@ -12,15 +12,15 @@ import { SKOOL_URL } from "@/lib/constants/links";
 const faqs = [
   {
     q: "Who is this for?",
-    a: "Builders, founders, and creators who want to use AI to grow faster — whether you're just starting or already running a business. If you want to stay ahead of the curve and actually implement, this is for you.",
+    a: "Builders, founders, and creators who want to use AI to grow faster, whether you're just starting or already running a business. If you want to stay ahead of the curve and actually implement, this is for you.",
   },
   {
-    q: "I'm not technical — will I still get value?",
+    q: "I'm not technical, will I still get value?",
     a: "Absolutely. The playbooks and templates are designed to be plug-and-play. You don't need to code. If you can click, copy, and paste, you can use everything inside.",
   },
   {
     q: "What makes this different from free AI content?",
-    a: "Free content tells you what's possible. The 1% shows you exactly how to do it — with tested workflows, real templates, and a community that holds you accountable.",
+    a: "Free content tells you what's possible. The 1% shows you exactly how to do it with tested workflows, real templates, and a community that holds you accountable.",
   },
   {
     q: "How much time do I need to commit?",
@@ -28,11 +28,11 @@ const faqs = [
   },
   {
     q: "Can I cancel anytime?",
-    a: "Yes. No contracts, no commitments. Cancel with one click whenever you want — no questions asked.",
+    a: "Yes. No contracts, no commitments. Cancel with one click whenever you want. No questions asked.",
   },
   {
     q: "Will the price stay at $59/mo?",
-    a: "For founding members, yes — your price is locked in forever. As the community grows and more resources are added, the price will increase for new members.",
+    a: "For founding members, yes, your price is locked in forever. As the community grows and more resources are added, the price will increase for new members.",
   },
 ];
 

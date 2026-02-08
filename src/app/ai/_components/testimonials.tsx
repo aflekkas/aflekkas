@@ -11,7 +11,7 @@ const testimonials = [
   },
   {
     quote:
-      "The community is insane. I've never been in a group where people actually share what's working — no gatekeeping.",
+      "The community is insane. I've never been in a group where people actually share what's working. No gatekeeping.",
     name: "Priya M.",
     role: "Agency owner",
   },

@@ -19,7 +19,7 @@ const items = [
     icon: BookOpen,
     title: "AI Playbooks",
     description:
-      "Step-by-step guides to automate sales, content, ops, and more — tested in real businesses.",
+      "Step-by-step guides to automate sales, content, ops, and more. Tested in real businesses.",
   },
   {
     icon: Video,
@@ -31,7 +31,7 @@ const items = [
     icon: Wrench,
     title: "Tool Stack",
     description:
-      "The exact AI tools, prompts, and workflows behind a $50K/mo business — no fluff.",
+      "The exact AI tools, prompts, and workflows behind a $50K/mo business. No fluff.",
   },
   {
     icon: LayoutTemplate,
@@ -71,7 +71,7 @@ export function Offer() {
           What&apos;s inside
         </p>
         <h2 className="mt-6 max-w-2xl text-3xl font-semibold leading-snug tracking-tight text-white sm:text-4xl">
-          Everything you need to build with AI — in one place.
+          Everything you need to build with AI, in one place.
         </h2>
 
         <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

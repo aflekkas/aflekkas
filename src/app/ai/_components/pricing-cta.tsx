@@ -13,7 +13,7 @@ const perks = [
   { text: "Weekly live calls & recordings", tag: "Included" },
   { text: "Full tool stack & prompt library", tag: "Included" },
   { text: "Private community access", tag: "Included" },
-  { text: "Founding member pricing — locked in forever", tag: "Exclusive" },
+  { text: "Founding member pricing, locked in forever", tag: "Exclusive" },
 ];
 
 export function PricingCta() {
@@ -50,7 +50,7 @@ export function PricingCta() {
               <span className="text-lg font-normal text-neutral-300">/mo</span>
             </p>
             <p className="mt-2 text-sm text-neutral-300">
-              Founding member price — cancel anytime
+              Founding member price, cancel anytime
             </p>
             <div className="mt-4 inline-block rounded-full border border-white/10 bg-white/[0.05] px-4 py-1.5">
               <p className="text-xs font-medium text-white">

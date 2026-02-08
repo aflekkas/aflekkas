@@ -60,3 +60,7 @@ The `/ai` page is a conversion-focused sales page for **The 1%**, a paid Skool c
 **Who's behind it:** @aflekkas — a founder who built a $50K/mo company using AI, 2M+ monthly views, no dev team.
 
 **Page structure:** Hero (rotating headlines) → Social Proof Bar → Problem → Offer → About → Testimonials → Pricing CTA → FAQ. All CTAs link to the Skool URL defined in `src/lib/constants/links.ts`.
+
+## Copy Style
+
+- **Never use em dashes (—)** in any copy, text, or content. Use commas, periods, or restructure the sentence instead.

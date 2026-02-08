@@ -18,7 +18,6 @@ const headlines = [
   "your unfair AI advantage",
   "automated AI workflows",
   "a one-person AI empire",
-  "what others outsource, with AI",
   "your AI sales machine",
 ];
 
@@ -70,7 +69,7 @@ export function Hero() {
         <h1 className="text-4xl leading-[1.12] font-semibold tracking-normal text-white sm:text-5xl md:text-6xl lg:text-7xl">
           Build{" "}
           <span className="relative inline-flex align-baseline">
-            {/* Hidden sizer — renders longest phrase to hold width */}
+            {/* Hidden sizer, renders longest phrase to hold width */}
             <span className="invisible whitespace-nowrap font-[family-name:var(--font-instrument-serif)] italic">
               your unfair advantage
             </span>
@@ -96,7 +95,7 @@ export function Hero() {
         </p>
 
         {/* CTAs */}
-        <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row">
+        <div className="mt-8 flex flex-row items-start gap-4">
           <RainbowButton asChild size="lg">
             <a href={SKOOL_URL} target="_blank" rel="noopener noreferrer">
               Join The 1%

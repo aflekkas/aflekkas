@@ -5,7 +5,7 @@ import { TextAnimate } from "@/components/ui/text-animate";
 
 const painPoints = [
   "You see AI announcements daily but don't know which ones actually matter for your business.",
-  "You're spending hours testing tools that go nowhere — while competitors ship faster than ever.",
+  "You're spending hours testing tools that go nowhere while competitors ship faster than ever.",
   "You know AI can 10x your output, but you don't have a system to make it happen.",
 ];
 
@@ -24,7 +24,7 @@ export function Problem() {
           duration={0.6}
           className="mt-6 max-w-2xl text-3xl font-semibold leading-snug tracking-tight text-white sm:text-4xl"
         >
-          AI is moving faster than you can keep up — and the gap is only getting wider.
+          AI is moving faster than you can keep up, and the gap is only getting wider.
         </TextAnimate>
 
         <div className="mt-12 space-y-6">

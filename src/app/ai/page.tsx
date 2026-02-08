@@ -10,7 +10,7 @@ import { Problem } from "./_components/problem";
 import { Testimonials } from "./_components/testimonials";
 
 export const metadata: Metadata = {
-  title: "The 1% — Build a $50K/mo Business with AI",
+  title: "The 1% | Build a $50K/mo Business with AI",
   description:
     "The private community for builders and founders who use AI to move faster, build smarter, and stay ahead of everyone else. $59/mo.",
 };
