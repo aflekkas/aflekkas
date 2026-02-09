@@ -1,1 +1,1 @@
-export const SKOOL_URL = "#";
+export const SKOOL_URL = "https://www.skool.com/the-lab-4353";
