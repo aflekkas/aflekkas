@@ -5,8 +5,8 @@ import { TextAnimate } from "@/components/ui/text-animate";
 
 const painPoints = [
   "You see AI announcements daily but don't know which ones actually matter for your business.",
-  "You're spending hours testing tools that go nowhere while competitors ship faster than ever.",
-  "You know AI can 10x your output, but you don't have a system to make it happen.",
+  "You've spent hours on tutorials, tools, and setups that went nowhere. Meanwhile, the people actually shipping are using workflows you haven't seen yet.",
+  "Every week you spend figuring it out alone is a week someone else pulls ahead. The gap compounds fast.",
 ];
 
 export function Problem() {
@@ -24,7 +24,7 @@ export function Problem() {
           duration={0.6}
           className="mt-6 max-w-2xl text-3xl font-medium leading-snug tracking-tight text-white sm:text-4xl"
         >
-          AI is moving fast. Most people are falling behind.
+          AI is moving fast. You shouldn't have to figure it out alone.
         </TextAnimate>
 
         <div className="mt-12 space-y-6">

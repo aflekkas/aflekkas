@@ -1,24 +1,22 @@
 "use client";
 
-import { Check } from "lucide-react";
-
-import { BorderBeam } from "@/components/ui/border-beam";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { MagicCard } from "@/components/ui/magic-card";
-import { RainbowButton } from "@/components/ui/rainbow-button";
 import { cn } from "@/lib/utils";
-import { SKOOL_URL } from "@/lib/constants/links";
-import { PRICE_TIERS, CURRENT_PRICE, CURRENT_TIER } from "@/lib/constants/pricing";
+import { CtaButton } from "./cta-button";
+import { PRICE_TIERS, CURRENT_TIER } from "@/lib/constants/pricing";
 
 const perks = [
-  { text: "All AI playbooks & future updates", tag: "Included" },
-  { text: "Weekly live calls & recordings", tag: "Included" },
-  { text: "Full tool stack & prompt library", tag: "Included" },
-  { text: "Private community access", tag: "Included" },
-  { text: "Founding member pricing, locked in forever", tag: "Exclusive" },
+  "Full course library & future drops",
+  "Weekly live builds & recordings",
+  "All configs, templates & prompt libraries",
+  "Private community access",
+  "Your dues help fund member projects",
 ];
 
 export function PricingCta() {
+  const price = CURRENT_TIER.price.toString().split(".");
+
   return (
     <section className="relative py-16 sm:py-20">
       <DotPattern
@@ -31,78 +29,69 @@ export function PricingCta() {
         )}
       />
 
-      <div className="relative z-10 mx-auto max-w-xl px-6 text-center">
-        <p className="text-xs font-mono uppercase tracking-[0.2em] text-neutral-300">
+      <div className="relative z-10 mx-auto max-w-lg px-6 text-center">
+        <p className="text-xs font-mono uppercase tracking-[0.2em] text-neutral-400">
           Join today
         </p>
 
         {/* Pricing card */}
         <MagicCard
-          className="mt-10 rounded-2xl"
+          className="mt-10 overflow-hidden rounded-2xl"
           gradientSize={250}
           gradientColor="#1a1a1a"
           gradientOpacity={0.9}
           gradientFrom="#ffffff"
           gradientTo="#666666"
         >
-          <div className="relative overflow-hidden rounded-2xl p-8 text-left sm:p-10">
-            <BorderBeam
-              size={200}
-              duration={10}
-              colorFrom="#ffffff"
-              colorTo="#444444"
-              borderWidth={1}
-              initialOffset={0}
-            />
-            <BorderBeam
-              size={200}
-              duration={10}
-              colorFrom="#ffffff"
-              colorTo="#444444"
-              borderWidth={1}
-              initialOffset={50}
-            />
+          <div className="relative rounded-2xl px-8 pb-12 pt-14 sm:px-12 sm:pb-14 sm:pt-16">
+            {/* Availability badge */}
+            <div className="mb-8 flex justify-center">
+              <span className="rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1 text-[11px] font-medium tracking-wide text-neutral-400">
+                {CURRENT_TIER.members} members only
+              </span>
+            </div>
 
             {/* Price */}
-            <div className="text-center">
-              <p className="mt-1 flex items-baseline justify-center text-6xl font-bold tracking-tight text-white sm:text-7xl">
-                {CURRENT_PRICE}
-                <span className="text-lg font-normal text-neutral-300">
-                  /mo
+            <div className="flex items-start justify-center">
+              <span className="mt-1.5 text-xl font-medium text-neutral-500 sm:mt-2">
+                $
+              </span>
+              <span className="text-5xl font-medium text-white sm:text-6xl">
+                {price[0]}
+              </span>
+              <div className="mt-1.5 flex flex-col items-start sm:mt-2">
+                <span className="text-xl font-medium text-white">
+                  .{price[1]}
                 </span>
-              </p>
-              <p className="mt-2 text-sm text-neutral-300">
-                Founding member price, cancel anytime
-              </p>
-              <div className="mt-4 inline-block rounded-full border border-white/10 bg-white/[0.05] px-4 py-1.5">
-                <p className="text-xs font-medium text-white">
-                  Only available for the {CURRENT_TIER.members.toLowerCase()}
-                  {" "}members
-                </p>
+                <span className="text-[11px] font-medium text-neutral-500">
+                  / mo
+                </span>
               </div>
             </div>
 
+            <p className="mt-3 text-[13px] text-neutral-500">
+              Founding member price, locked in forever
+            </p>
+
+            {/* Divider */}
+            <div className="mx-auto my-10 h-px w-12 bg-white/10" />
+
             {/* Perks */}
-            <ul className="mt-10 space-y-4">
+            <ul className="space-y-4.5">
               {perks.map((perk) => (
-                <li key={perk.text} className="flex items-start gap-3">
-                  <Check className="mt-0.5 size-4 shrink-0 text-neutral-300" />
-                  <span className="text-sm text-neutral-300">{perk.text}</span>
-                  <span className="ml-auto shrink-0 text-xs font-mono text-neutral-600">
-                    {perk.tag}
-                  </span>
+                <li key={perk} className="flex items-center gap-3">
+                  <div className="flex size-5 shrink-0 items-center justify-center rounded-full bg-white/[0.06]">
+                    <div className="size-1.5 rounded-full bg-white/60" />
+                  </div>
+                  <span className="text-[13px] text-neutral-300">{perk}</span>
                 </li>
               ))}
             </ul>
 
             {/* CTA */}
-            <div className="mt-10 text-center">
-              <RainbowButton asChild size="lg">
-                <a href={SKOOL_URL} target="_blank" rel="noopener noreferrer">
-                  Join The 1%
-                </a>
-              </RainbowButton>
-              <p className="mt-4 text-xs text-neutral-600">
+            <div className="mt-12">
+              <CtaButton className="w-full" />
+              <p className="mt-4 text-center text-[11px] text-neutral-600">
                 Cancel anytime. No questions asked.
               </p>
             </div>
@@ -110,21 +99,20 @@ export function PricingCta() {
         </MagicCard>
       </div>
 
-      {/* Price Roadmap — full width, below the card */}
+      {/* Price Roadmap */}
       <div className="relative z-10 mt-16 text-center">
-        <p className="text-xs font-mono uppercase tracking-[0.2em] text-neutral-500 mb-8">
+        <p className="mb-8 text-xs font-mono uppercase tracking-[0.2em] text-neutral-500">
           Price increases as we grow
         </p>
 
         <div className="relative mx-auto max-w-2xl">
-          {/* Full-width connecting line */}
           <div className="absolute top-2.5 left-0 right-0 h-px bg-white/10" />
 
           <div className="relative flex items-start justify-center">
             {PRICE_TIERS.map((tier) => (
               <div
                 key={tier.members}
-                className="relative z-10 flex flex-col items-center gap-2.5 w-32 sm:w-40"
+                className="relative z-10 flex w-32 flex-col items-center gap-2.5 sm:w-40"
               >
                 <div
                   className={cn(

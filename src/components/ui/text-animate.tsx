@@ -389,7 +389,10 @@ const TextAnimateBase = ({
         whileInView={startOnView ? "show" : undefined}
         animate={startOnView ? undefined : "show"}
         exit="exit"
-        className={cn("whitespace-pre-wrap", className)}
+        className={cn(
+          (by === "line" || by === "text") && "whitespace-pre-wrap",
+          className
+        )}
         viewport={{ once }}
         aria-label={accessible ? children : undefined}
         {...props}
@@ -401,7 +404,11 @@ const TextAnimateBase = ({
             variants={finalVariants.item}
             custom={i * staggerTimings[by]}
             className={cn(
-              by === "line" ? "block" : "inline-block whitespace-pre",
+              by === "line"
+                ? "block"
+                : segment.trim()
+                  ? "inline-block"
+                  : "inline",
               by === "character" && "",
               segmentClassName
             )}

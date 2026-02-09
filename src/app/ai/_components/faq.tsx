@@ -6,26 +6,29 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { RainbowButton } from "@/components/ui/rainbow-button";
-import { SKOOL_URL } from "@/lib/constants/links";
+import { CtaButton } from "./cta-button";
 import { CURRENT_PRICE_MO, CURRENT_TIER, NEXT_PRICE_MO } from "@/lib/constants/pricing";
 
 const faqs = [
   {
-    q: "Who is this for?",
-    a: "Builders, founders, and creators who want to use AI to grow faster, whether you're just starting or already running a business. If you want to stay ahead of the curve and actually implement, this is for you.",
+    q: "What if I'm just getting started with AI?",
+    a: "That's exactly when this is most valuable. The courses start from the basics and the community is full of people at every level. You'll skip months of trial and error and start building with workflows that actually work.",
   },
   {
     q: "I'm not technical, will I still get value?",
-    a: "Absolutely. The playbooks and templates are designed to be plug-and-play. You don't need to code. If you can click, copy, and paste, you can use everything inside.",
+    a: "Absolutely. The courses and templates are designed to be plug-and-play. You don't need to code. If you can click, copy, and paste, you can use everything inside.",
   },
   {
     q: "What makes this different from free AI content?",
-    a: "Free content tells you what's possible. The 1% shows you exactly how to do it with tested workflows, real templates, and a community that holds you accountable.",
+    a: "Free content tells you what's possible. The Lab gives you full courses, tested configs, live builds, and a community of people actually shipping. Plus, part of your membership funds real projects from members.",
   },
   {
     q: "How much time do I need to commit?",
-    a: "As little or as much as you want. The live calls are ~60 minutes per week, and playbooks are self-paced. Most members see results within the first week.",
+    a: "As little or as much as you want. The live calls are ~60 minutes per week, and courses are self-paced. Most members see results within the first week.",
+  },
+  {
+    q: "Why is this paid?",
+    a: "Because the courses, live calls, resources, and community don't build themselves. The membership keeps it private, keeps the quality high, and a portion goes directly toward funding real AI projects pitched by members. You're paying for access and helping fund what gets built next.",
   },
   {
     q: "Can I cancel anytime?",
@@ -34,6 +37,10 @@ const faqs = [
   {
     q: "Will the price go up?",
     a: `Yes. The price starts at ${CURRENT_PRICE_MO} for the ${CURRENT_TIER.members.toLowerCase()} members, then goes to ${NEXT_PRICE_MO}, and continues to increase as the community grows. But once you lock in your price, it stays the same forever, no matter how high it goes for new members.`,
+  },
+  {
+    q: "Wait, was this landing page built with AI?",
+    a: "Yes. I built this entire page in a day with Claude Code using some of the same frontend tools I teach inside The Lab. Pretty meta, right? ;)",
   },
 ];
 
@@ -66,11 +73,7 @@ export function Faq() {
         </Accordion>
 
         <div className="mt-14 text-center">
-          <RainbowButton asChild size="lg">
-            <a href={SKOOL_URL} target="_blank" rel="noopener noreferrer">
-              Join The 1%
-            </a>
-          </RainbowButton>
+          <CtaButton />
         </div>
       </div>
     </section>
