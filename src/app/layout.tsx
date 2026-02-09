@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${interTight.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
+        className={`${interTight.variable} ${geistMono.variable} ${instrumentSerif.variable} overflow-x-hidden antialiased`}
       >
         {children}
       </body>
