@@ -11,7 +11,7 @@ import { Testimonials } from "./_components/testimonials";
 import { CURRENT_PRICE_MO } from "@/lib/constants/pricing";
 
 export const metadata: Metadata = {
-  title: "The 1% | Build a $50K/mo Business with AI",
+  title: "The 1% | The AI Community for Builders & Founders",
   description: `The private community for builders and founders who use AI to move faster, build smarter, and stay ahead of everyone else. ${CURRENT_PRICE_MO}.`,
 };
 
