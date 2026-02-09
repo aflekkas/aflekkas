@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Instagram, Linkedin } from "lucide-react";
 
 import { BlurFade } from "@/components/ui/blur-fade";
 
@@ -22,6 +23,34 @@ export function About() {
               height={176}
               className="mx-auto size-44 rounded-2xl border border-white/10 object-cover md:mx-0"
             />
+            <div className="mt-3 flex items-center justify-center gap-3 md:justify-start">
+              <a
+                href="https://www.instagram.com/aflekkas"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-400 transition-colors hover:text-white"
+              >
+                <Instagram className="size-5" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@aflekkas"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-400 transition-colors hover:text-white"
+              >
+                <svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 0 0-.79-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.71a8.19 8.19 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.14z" />
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/alexandros-lekkas/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-400 transition-colors hover:text-white"
+              >
+                <Linkedin className="size-5" />
+              </a>
+            </div>
           </BlurFade>
 
           {/* Story */}
