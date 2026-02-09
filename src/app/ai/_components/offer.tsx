@@ -70,7 +70,7 @@ export function Offer() {
         <p className="text-xs font-mono uppercase tracking-[0.2em] text-neutral-300">
           What&apos;s inside
         </p>
-        <h2 className="mt-6 max-w-2xl text-3xl font-semibold leading-snug tracking-tight text-white sm:text-4xl">
+        <h2 className="mt-6 max-w-2xl text-3xl font-medium leading-snug tracking-tight text-white sm:text-4xl">
           Everything you need to build with AI, in one place.
         </h2>
 

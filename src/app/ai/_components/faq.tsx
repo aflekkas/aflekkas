@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/accordion";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { SKOOL_URL } from "@/lib/constants/links";
+import { CURRENT_PRICE_MO, CURRENT_TIER, NEXT_PRICE_MO } from "@/lib/constants/pricing";
 
 const faqs = [
   {
@@ -31,8 +32,8 @@ const faqs = [
     a: "Yes. No contracts, no commitments. Cancel with one click whenever you want. No questions asked.",
   },
   {
-    q: "Will the price stay at $59/mo?",
-    a: "For founding members, yes, your price is locked in forever. As the community grows and more resources are added, the price will increase for new members.",
+    q: "Will the price go up?",
+    a: `Yes. The price starts at ${CURRENT_PRICE_MO} for the ${CURRENT_TIER.members.toLowerCase()} members, then goes to ${NEXT_PRICE_MO}, and continues to increase as the community grows. But once you lock in your price, it stays the same forever, no matter how high it goes for new members.`,
   },
 ];
 
@@ -43,7 +44,7 @@ export function Faq() {
         <p className="text-xs font-mono uppercase tracking-[0.2em] text-neutral-300">
           FAQ
         </p>
-        <h2 className="mt-6 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+        <h2 className="mt-6 text-3xl font-medium tracking-tight text-white sm:text-4xl">
           Common questions
         </h2>
 

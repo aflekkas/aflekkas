@@ -66,7 +66,7 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 pt-20 pb-16 sm:pt-32 sm:pb-16">
         {/* Headline */}
-        <h1 className="text-4xl leading-[1.12] font-semibold tracking-normal text-white sm:text-5xl md:text-6xl lg:text-7xl">
+        <h1 className="text-4xl leading-[1.12] font-medium tracking-normal text-white sm:text-5xl md:text-6xl lg:text-7xl">
           Build{" "}
           <span className="relative inline-flex align-baseline">
             {/* Hidden sizer, renders longest phrase to hold width */}

@@ -22,9 +22,9 @@ export function Problem() {
           by="word"
           animation="blurInUp"
           duration={0.6}
-          className="mt-6 max-w-2xl text-3xl font-semibold leading-snug tracking-tight text-white sm:text-4xl"
+          className="mt-6 max-w-2xl text-3xl font-medium leading-snug tracking-tight text-white sm:text-4xl"
         >
-          AI is moving faster than you can keep up, and the gap is only getting wider.
+          AI is moving fast. Most people are falling behind.
         </TextAnimate>
 
         <div className="mt-12 space-y-6">

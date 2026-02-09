@@ -8,11 +8,11 @@ import { PricingCta } from "./_components/pricing-cta";
 import { Problem } from "./_components/problem";
 
 import { Testimonials } from "./_components/testimonials";
+import { CURRENT_PRICE_MO } from "@/lib/constants/pricing";
 
 export const metadata: Metadata = {
   title: "The 1% | Build a $50K/mo Business with AI",
-  description:
-    "The private community for builders and founders who use AI to move faster, build smarter, and stay ahead of everyone else. $59/mo.",
+  description: `The private community for builders and founders who use AI to move faster, build smarter, and stay ahead of everyone else. ${CURRENT_PRICE_MO}.`,
 };
 
 export default function AIPage() {
