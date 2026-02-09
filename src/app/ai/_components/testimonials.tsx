@@ -7,6 +7,22 @@ import { MagicCard } from "@/components/ui/magic-card";
 const testimonials = [
   {
     quote:
+      "Used the AI tool stack to ship a full MVP in a weekend. Would've taken me weeks without it.",
+    name: "Ashwin Balaraman",
+    role: "AI Developer & Founder",
+    image: "/testimonials/ashwin.jpeg",
+    linkedin: "https://www.linkedin.com/in/ashwin-balaraman-512990329/",
+  },
+  {
+    quote:
+      "Built my own ClawdBot using just Claude Code and saved hundreds of $. The age of self-improving AI is here and this community really does teach how to harness it.",
+    name: "Nathan Lee",
+    role: "AI Tinkerer & CS Student",
+    image: "/testimonials/nathan.jpeg",
+    linkedin: "https://www.linkedin.com/in/nathaniel-lee-443244327/",
+  },
+  {
+    quote:
       "Bro the content workflow you dropped last week is stupid good. Set it up for our creators and it cut our turnaround in half.",
     name: "Sonny Morse",
     role: "CEO, MediaMaxxing",
@@ -21,14 +37,6 @@ const testimonials = [
     image: "/testimonials/davin.jpeg",
     linkedin: "https://www.linkedin.com/in/davinpatel21/",
   },
-  {
-    quote:
-      "Used the AI tool stack to ship a full MVP in a weekend. Would've taken me weeks without it.",
-    name: "Ashwin Balaraman",
-    role: "AI Developer & Founder",
-    image: "/testimonials/ashwin.jpeg",
-    linkedin: "https://www.linkedin.com/in/ashwin-balaraman-512990329/",
-  },
 ];
 
 export function Testimonials() {
@@ -42,11 +50,16 @@ export function Testimonials() {
           Real results from real builders.
         </h2>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-3">
+        <div className="mt-14 columns-1 gap-4 sm:columns-2">
           {testimonials.map((t, i) => (
-            <BlurFade key={t.name} delay={0.1 * i} inView>
+            <BlurFade
+              key={t.name}
+              delay={0.1 * i}
+              inView
+              className="mb-4 break-inside-avoid"
+            >
               <MagicCard
-                className="rounded-xl border border-white/10"
+                className="rounded-xl"
                 gradientColor="#1a1a1a"
                 gradientFrom="#333"
                 gradientTo="#222"
