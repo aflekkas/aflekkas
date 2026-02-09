@@ -11,7 +11,7 @@ const testimonials = [
     name: "Ashwin Balaraman",
     role: "AI Developer & Founder",
     image: "/testimonials/ashwin.jpeg",
-    linkedin: "https://www.linkedin.com/in/ashwin-balaraman-512990329/",
+    link: "https://www.linkedin.com/in/ashwin-balaraman-512990329/",
   },
   {
     quote:
@@ -19,23 +19,31 @@ const testimonials = [
     name: "Nathan Lee",
     role: "AI Tinkerer & CS Student",
     image: "/testimonials/nathan.jpeg",
-    linkedin: "https://www.linkedin.com/in/nathaniel-lee-443244327/",
+    link: "https://www.linkedin.com/in/nathaniel-lee-443244327/",
+  },
+  {
+    quote:
+      "Hooked ClawdBot up to my content pipeline and it rewrites my scripts for different platforms in seconds. I'm posting twice as much UGC with half the effort.",
+    name: "Max Kouzes",
+    role: "UGC Creator",
+    image: "/testimonials/max.jpg",
+    link: "https://www.instagram.com/kouzes_/",
   },
   {
     quote:
       "Bro the content workflow you dropped last week is stupid good. Set it up for our creators and it cut our turnaround in half.",
     name: "Sonny Morse",
-    role: "CEO, MediaMaxxing",
+    role: "UGC Marketing Agency Owner",
     image: "/testimonials/sonny.jpeg",
-    linkedin: "https://www.linkedin.com/in/sonnymorse/",
+    link: "https://www.linkedin.com/in/sonnymorse/",
   },
   {
     quote:
       "Actually wild how much people share in here. Most paid groups are dead after a week, this one keeps delivering.",
     name: "Davin Patel",
-    role: "COO, MediaMaxxing",
+    role: "Partner, VantagePoint",
     image: "/testimonials/davin.jpeg",
-    linkedin: "https://www.linkedin.com/in/davinpatel21/",
+    link: "https://www.linkedin.com/in/davinpatel21/",
   },
 ];
 
@@ -79,7 +87,7 @@ export function Testimonials() {
                     />
                     <div>
                       <a
-                        href={t.linkedin}
+                        href={t.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-sm font-medium text-white hover:underline"

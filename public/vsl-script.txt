@@ -1,0 +1,76 @@
+VSL SCRIPT — THE LAB
+Target length: 2-3 minutes
+Film each section as its own take so you can cut between them.
+
+
+=== HOOK (0:00 - 0:15) ===
+
+"Every single day there's a new AI tool, a new update, a new 'this changes everything' post. And if you're being honest, you're probably not using any of it to actually build anything."
+
+"I was in the same spot a year ago. Now I run a business doing over fifty thousand a month, and AI is the reason."
+
+
+=== PROBLEM (0:15 - 0:45) ===
+
+"Here's what I see happening. You watch the tutorials. You try the tools. You set up some automation that takes longer to build than just doing it manually. And then next week there's a new tool and you start over."
+
+"Meanwhile, the people actually making money with AI aren't doing any of that. They're using specific workflows, specific setups, and they're sharing them with each other. Not on YouTube. Not on Twitter. In private."
+
+"The gap between people figuring it out alone and people building together is getting wider every week."
+
+
+=== CREDIBILITY (0:45 - 1:10) ===
+
+"I'm Alex. I built a company from my dorm room to over six figures a month in revenue, getting millions of views every month. No dev team. No employees. I treated AI like a co-founder, not a toy."
+
+"Every workflow, every system, every piece of content my business runs on was built with AI. And I figured all of it out the hard way, wasting months on stuff that didn't work before finding what did."
+
+
+=== THE OFFER (1:10 - 1:50) ===
+
+"That's why I built The Lab. It's a private community where I'm packaging everything, the exact workflows, the courses, the tool configs, the templates, all of it, so you don't have to figure it out alone."
+
+"Inside you get full AI courses from beginner to advanced. Weekly live sessions where we actually build together. My entire tool stack with pre-made configs you can plug in and use today. A prompt library and templates you can copy and paste. And a private community of people who are actually shipping, not just talking about it."
+
+"And here's what makes this different: members get AI credits to actually use these tools, not just learn about them. And as the community grows, we're landing sponsorships from AI tool companies, which means you get early access to test the newest tools before everyone else. You're not just watching AI happen, you're on the front line of it."
+
+
+=== OBJECTION HANDLING (1:50 - 2:15) ===
+
+"If you're thinking 'I'm not technical enough,' good. That's exactly when this is most valuable. Everything inside is designed to be plug and play. If you can copy and paste, you can use it."
+
+"And if you're thinking 'why would I pay when there's free content everywhere,' that's fair. But free content tells you what's possible. The Lab gives you the actual files, configs, and builds that get it done. There's a difference between watching someone cook and getting the recipe."
+
+
+=== CTA + URGENCY (2:15 - 2:30) ===
+
+"The price goes up as the community grows, but once you lock in your rate it stays the same forever. Right now it's the lowest it's ever going to be."
+
+"If you're serious about building with AI and not just watching from the sidelines, the link is right below this video. I'll see you inside."
+
+
+=== FILMING NOTES ===
+
+Shooting order (easiest to hardest energy):
+1. Offer section (just listing things, low pressure)
+2. Credibility (your story, you know it)
+3. Problem (needs intensity)
+4. Objection handling (conversational)
+5. CTA (short, confident)
+6. Hook (film last when warmed up, most important 15 seconds)
+
+Setup:
+- iPhone on tripod, eye level, landscape 4K
+- Lav mic or AirPods Pro (audio matters more than video)
+- Face a window for natural light, or ring light behind camera
+- Cleanest corner of dorm, plain wall or desk setup
+- Head and upper chest in frame, slightly off-center
+- Look at the camera lens, not the screen
+- Stand up even if only upper body is in frame
+
+Editing:
+- Jump cuts are fine, cut out pauses and ums
+- Light background music at 10-15% volume
+- Bump contrast, lower highlights, add slight warmth
+- Export 1080p minimum, 4K if possible
+- Name file vsl.mp4, drop in /public
