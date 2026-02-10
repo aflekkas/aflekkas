@@ -2,6 +2,35 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Agent Orchestration
+
+**Act as an orchestrator, not a single-threaded worker.** For any task beyond a simple, direct change (e.g. "rename this variable", "fix this typo"), break the work into sub-tasks and delegate to specialized sub-agents in parallel using the Task tool.
+
+**When to orchestrate:**
+- Feature work touching multiple files or concerns (DB + UI + server action)
+- Tasks that need research/exploration before implementation
+- Bug reports that need investigation before a fix
+- Any request with 2+ independent workstreams
+
+**When to just do it directly:**
+- Single-file edits, small tweaks, quick answers
+- Tasks where orchestration overhead would be slower than just doing it
+
+**Available sub-agents:**
+| Agent | Use for |
+|-------|---------|
+| `Explore` | Fast codebase search, find files/patterns, understand architecture |
+| `Plan` | Design implementation approach, identify files to change, architectural decisions |
+| `bug-fixer` | Investigate and fix bugs, runtime errors, build failures |
+| `general-purpose` | Multi-step research, web lookups, anything that doesn't fit above |
+| `Bash` | Git operations, running commands, installs |
+
+**How to orchestrate well:**
+- Launch independent sub-agents **in parallel** (single message, multiple Task calls)
+- Give each agent a clear, self-contained prompt with all context it needs
+- After agents return, synthesize results and do the actual implementation yourself (or delegate further)
+- Use the todo list (`TaskCreate`/`TaskUpdate`) to track progress on multi-step work
+
 ## Commands
 
 ```bash
@@ -23,7 +52,22 @@ Package manager is **Bun** (bun.lock).
 
 - `/` redirects to `/ai`
 - `/ai` is the main page (`src/app/ai/page.tsx`)
-- Page-specific sub-components go in `src/app/ai/_components/`
+
+### Page Folder Structure
+
+Every route folder (`src/app/<route>/`) follows this convention:
+
+```
+src/app/<route>/
+├── page.tsx           # Page component
+├── actions.ts         # Server Actions
+├── schemas.ts         # Zod / validation schemas
+├── types.d.ts         # Local type definitions
+├── _components/       # Page-specific components
+└── _utils/            # Page-specific utility functions
+```
+
+Only create files as needed. `page.tsx` is the only required file.
 
 ### Styling & Components
 
@@ -77,6 +121,11 @@ The long-term plan is to **replace Skool with a fully custom-built platform** on
 **Current state:** CTAs on the `/ai` page now open a **waitlist dialog** (email capture) instead of linking to Skool. Backend storage for waitlist emails is not yet wired up (TODO: Supabase, Resend, or similar).
 
 **Tech stack for platform (future):** Next.js + Supabase (auth, DB, realtime, storage) + Stripe (subscriptions) + Mux (video hosting/streaming)
+
+## Data & Server Patterns
+
+- **Prefer server-side over client-side.** Use Server Components, Server Actions, and server-side data fetching by default. Only use client components (`"use client"`) when you need interactivity (event handlers, hooks, browser APIs). Keep data mutations in Server Actions, not client-side API calls.
+- **Supabase project:** `mawsuyyjxqykenglouky` (region: us-east-1). Server-side client lives in `src/lib/supabase/server.ts`, browser client in `src/lib/supabase/client.ts`.
 
 ## Copy Style
 
