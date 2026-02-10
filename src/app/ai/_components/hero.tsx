@@ -230,6 +230,7 @@ function VideoPlayer() {
       <video
         ref={videoRef}
         src="/vsl.mp4"
+        poster="/vsl-thumbnail.png"
         className={cn(
           "aspect-video w-full cursor-pointer transition-[filter] duration-700 ease-out",
           !hasStarted && "blur-sm brightness-90",
