@@ -411,7 +411,8 @@ export function Hero() {
             href="#offer"
             className="group/sec inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-neutral-800 px-8 text-sm font-medium text-white transition-colors hover:bg-neutral-700"
           >
-            See what's inside
+            <span className="sm:hidden">See more</span>
+            <span className="hidden sm:inline">See what's inside</span>
             <ChevronDown className="size-4 transition-transform duration-200 group-hover/sec:translate-y-0.5" />
           </a>
         </div>
