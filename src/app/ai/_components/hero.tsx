@@ -367,7 +367,7 @@ export function Hero() {
   }, [mounted, shuffled.length]);
 
   return (
-    <section className="relative bg-background">
+    <section className="relative overflow-hidden bg-background">
       {/* Dot pattern background with radial fade */}
       <DotPattern
         cr={1.2}
