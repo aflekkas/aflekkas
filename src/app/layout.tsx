@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter_Tight, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const interTight = Inter_Tight({
@@ -35,6 +37,8 @@ export default function RootLayout({
         className={`${interTight.variable} ${geistMono.variable} ${instrumentSerif.variable} overflow-x-hidden antialiased`}
       >
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
