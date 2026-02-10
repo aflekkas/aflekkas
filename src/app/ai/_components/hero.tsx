@@ -228,7 +228,7 @@ function VideoPlayer() {
       {/* Video */}
       <video
         ref={videoRef}
-        src="/vsl.mp4"
+        src="/landing/vsl/vsl.mp4"
         className="aspect-video w-full cursor-pointer"
         playsInline
         muted
@@ -243,7 +243,7 @@ function VideoPlayer() {
           className="absolute inset-0 z-20 flex cursor-pointer items-center justify-center"
         >
           <img
-            src="/vsl-thumbnail.png"
+            src="/landing/vsl/thumbnail.png"
             alt=""
             className="absolute inset-0 h-full w-full object-cover blur-sm brightness-90"
           />

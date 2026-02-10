@@ -10,7 +10,7 @@ const testimonials = [
       "Used the AI tool stack to ship a full MVP in a weekend. Would've taken me weeks without it.",
     name: "Ashwin Balaraman",
     role: "AI Developer & Founder",
-    image: "/testimonials/ashwin.jpeg",
+    image: "/landing/testimonials/ashwin.jpeg",
     link: "https://www.linkedin.com/in/ashwin-balaraman-512990329/",
   },
   {
@@ -18,7 +18,7 @@ const testimonials = [
       "Built my own ClawdBot using just Claude Code and saved hundreds of $. The age of self-improving AI is here and this community really does teach how to harness it.",
     name: "Nathan Lee",
     role: "AI Tinkerer & CS Student",
-    image: "/testimonials/nathan.jpeg",
+    image: "/landing/testimonials/nathan.jpeg",
     link: "https://www.linkedin.com/in/nathaniel-lee-443244327/",
   },
   {
@@ -26,7 +26,7 @@ const testimonials = [
       "Hooked ClawdBot up to my content pipeline and it rewrites my scripts for different platforms in seconds. I'm posting twice as much UGC with half the effort.",
     name: "Max Kouzes",
     role: "UGC Creator",
-    image: "/testimonials/max.jpg",
+    image: "/landing/testimonials/max.jpg",
     link: "https://www.instagram.com/kouzes_/",
   },
   {
@@ -34,7 +34,7 @@ const testimonials = [
       "Bro the content workflow you dropped last week is stupid good. Set it up for our creators and it cut our turnaround in half.",
     name: "Sonny Morse",
     role: "UGC Marketing Agency Owner",
-    image: "/testimonials/sonny.jpeg",
+    image: "/landing/testimonials/sonny.jpeg",
     link: "https://www.linkedin.com/in/sonnymorse/",
   },
   {
@@ -42,7 +42,7 @@ const testimonials = [
       "Actually wild how much people share in here. Most paid groups are dead after a week, this one keeps delivering.",
     name: "Davin Patel",
     role: "Partner, VantagePoint",
-    image: "/testimonials/davin.jpeg",
+    image: "/landing/testimonials/davin.jpeg",
     link: "https://www.linkedin.com/in/davinpatel21/",
   },
 ];
