@@ -47,11 +47,13 @@ const testimonials = [
   },
 ];
 
+type Testimonial = (typeof testimonials)[number];
+
 function TestimonialCard({
   testimonial: t,
   index: i,
 }: {
-  testimonial: (typeof testimonials)[number];
+  testimonial: Testimonial;
   index: number;
 }) {
   return (
@@ -96,7 +98,7 @@ function TestimonialCard({
 function TestimonialGrid({
   testimonials,
 }: {
-  testimonials: typeof testimonials;
+  testimonials: Testimonial[];
 }) {
   const hasOdd = testimonials.length % 2 === 1;
   const paired = hasOdd ? testimonials.slice(0, -1) : testimonials;
