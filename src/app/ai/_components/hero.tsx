@@ -76,8 +76,12 @@ function VideoPlayer() {
     const v = videoRef.current;
     if (!v) return;
     if (v.paused) {
+      if (!hasStarted) {
+        v.muted = false;
+        setMuted(false);
+        setHasStarted(true);
+      }
       v.play();
-      if (!hasStarted) setHasStarted(true);
       setHasEnded(false);
     } else {
       v.pause();
