@@ -233,14 +233,18 @@ function VideoPlayer() {
         onClick={togglePlay}
       />
 
-      {/* Big center play overlay (before first play) */}
+      {/* Thumbnail + play overlay (before first play) */}
       {!hasStarted && (
         <button
           onClick={togglePlay}
-          className="absolute inset-0 z-20 flex cursor-pointer items-center justify-center bg-black/20 transition-colors hover:bg-black/30"
+          className="absolute inset-0 z-20 flex cursor-pointer items-center justify-center bg-black transition-colors hover:bg-black/90"
         >
+          <img
+            src="/vsl-thumbnail.png"
+            alt="Video thumbnail"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
           <div className="relative flex size-20 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/30 hover:bg-white/10">
-            {/* Subtle outer glow ring */}
             <div className="absolute -inset-2 rounded-full border border-white/[0.08]" />
             <Play className="ml-1 size-8 fill-white text-white" />
           </div>
