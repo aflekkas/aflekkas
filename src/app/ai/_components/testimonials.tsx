@@ -47,6 +47,79 @@ const testimonials = [
   },
 ];
 
+function TestimonialCard({
+  testimonial: t,
+  index: i,
+}: {
+  testimonial: (typeof testimonials)[number];
+  index: number;
+}) {
+  return (
+    <BlurFade delay={0.1 * i} inView className="mb-4 break-inside-avoid">
+      <MagicCard
+        className="rounded-xl"
+        gradientColor="#1a1a1a"
+        gradientFrom="#333"
+        gradientTo="#222"
+        gradientOpacity={0.5}
+      >
+        <div className="p-6">
+          <p className="text-sm leading-relaxed text-neutral-300">
+            &ldquo;{t.quote}&rdquo;
+          </p>
+          <div className="mt-5 flex items-center gap-3">
+            <Image
+              src={t.image}
+              alt={t.name}
+              width={36}
+              height={36}
+              className="rounded-full object-cover"
+            />
+            <div>
+              <a
+                href={t.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-medium text-white hover:underline"
+              >
+                {t.name}
+              </a>
+              <p className="text-xs text-neutral-300">{t.role}</p>
+            </div>
+          </div>
+        </div>
+      </MagicCard>
+    </BlurFade>
+  );
+}
+
+function TestimonialGrid({
+  testimonials,
+}: {
+  testimonials: typeof testimonials;
+}) {
+  const hasOdd = testimonials.length % 2 === 1;
+  const paired = hasOdd ? testimonials.slice(0, -1) : testimonials;
+  const last = hasOdd ? testimonials[testimonials.length - 1] : null;
+
+  return (
+    <div className="mt-14 flex flex-col gap-4">
+      <div className="-mb-4 columns-1 gap-4 sm:columns-2">
+        {paired.map((t, i) => (
+          <TestimonialCard key={t.name} testimonial={t} index={i} />
+        ))}
+      </div>
+      {last && (
+        <div className="flex justify-center">
+          <div className="w-full sm:w-[calc(50%-0.5rem)]">
+            <TestimonialCard testimonial={last} index={paired.length} />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export function Testimonials() {
   return (
     <section className="py-16 sm:py-20">
@@ -61,50 +134,7 @@ export function Testimonials() {
           </span>
         </h2>
 
-        <div className="mt-14 columns-1 gap-4 sm:columns-2">
-          {testimonials.map((t, i) => (
-            <BlurFade
-              key={t.name}
-              delay={0.1 * i}
-              inView
-              className="mb-4 break-inside-avoid"
-            >
-              <MagicCard
-                className="rounded-xl"
-                gradientColor="#1a1a1a"
-                gradientFrom="#333"
-                gradientTo="#222"
-                gradientOpacity={0.5}
-              >
-                <div className="p-6">
-                  <p className="text-sm leading-relaxed text-neutral-300">
-                    &ldquo;{t.quote}&rdquo;
-                  </p>
-                  <div className="mt-5 flex items-center gap-3">
-                    <Image
-                      src={t.image}
-                      alt={t.name}
-                      width={36}
-                      height={36}
-                      className="rounded-full object-cover"
-                    />
-                    <div>
-                      <a
-                        href={t.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-sm font-medium text-white hover:underline"
-                      >
-                        {t.name}
-                      </a>
-                      <p className="text-xs text-neutral-300">{t.role}</p>
-                    </div>
-                  </div>
-                </div>
-              </MagicCard>
-            </BlurFade>
-          ))}
-        </div>
+        <TestimonialGrid testimonials={testimonials} />
       </div>
     </section>
   );
