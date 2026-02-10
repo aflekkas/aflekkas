@@ -61,6 +61,27 @@ The `/ai` page is a conversion-focused sales page for **The 1%**, a paid Skool c
 
 **Page structure:** Hero (rotating headlines) → Social Proof Bar → Problem → Offer → About → Testimonials → Pricing CTA → FAQ. All CTAs link to the Skool URL defined in `src/lib/constants/links.ts`.
 
+## Long-term Vision: Custom Community Platform
+
+The long-term plan is to **replace Skool with a fully custom-built platform** on this same stack (Next.js + Supabase + Stripe + Mux). The goal is to turn the community into an interactive learning platform purpose-built for AI builders, not just a forum with a course player.
+
+**Key advantages over Skool:**
+- **Interactive content**: "Open in Lovable" buttons, downloadable starter files, embedded playgrounds for prompts/configs, one-click templates directly in lessons
+- **Full funnel ownership**: No redirect to skool.com. Landing page, signup, community all on one domain. Seamless experience.
+- **Email capture / free tier**: Instead of paywall-or-nothing (Skool's model), capture emails from people not ready to pay. Free tier with gated content, drip sequences to convert later.
+- **Tiered access**: Free (some templates, read-only feed) vs Paid (full access, live calls, all playbooks, interactive features)
+- **No platform fees**: Eliminate Skool's $99/mo. Only pay Stripe's per-transaction fees (2.9% + $0.30).
+- **Custom features**: AI-powered features baked in, personalized dashboards, custom onboarding
+- **Data ownership**: Full analytics, retargeting pixels, email lists as an asset
+
+**Current state:** CTAs on the `/ai` page now open a **waitlist dialog** (email capture) instead of linking to Skool. Backend storage for waitlist emails is not yet wired up (TODO: Supabase, Resend, or similar).
+
+**Tech stack for platform (future):** Next.js + Supabase (auth, DB, realtime, storage) + Stripe (subscriptions) + Mux (video hosting/streaming)
+
 ## Copy Style
 
 - **Never use em dashes (—)** in any copy, text, or content. Use commas, periods, or restructure the sentence instead.
+
+## Design Style
+
+- **Black and white only.** The site uses a monochrome palette. Do not introduce colors (no emerald, blue, red, etc.). Icons, text, borders, accents should all be white/neutral shades on the dark background.

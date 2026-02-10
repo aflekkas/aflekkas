@@ -55,7 +55,10 @@ export function Testimonials() {
           What members say
         </p>
         <h2 className="mt-6 max-w-xl text-3xl font-medium leading-snug tracking-tight text-white sm:text-4xl">
-          Real results from real builders.
+          Real results from{" "}
+          <span className="font-[family-name:var(--font-instrument-serif)] italic underline decoration-white/30 underline-offset-[6px]">
+            real builders.
+          </span>
         </h2>
 
         <div className="mt-14 columns-1 gap-4 sm:columns-2">

@@ -71,7 +71,10 @@ export function Offer() {
           What&apos;s inside
         </p>
         <h2 className="mt-6 max-w-2xl text-3xl font-medium leading-snug tracking-tight text-white sm:text-4xl">
-          Everything you need to build with AI, in one place.
+          Everything you need to build with AI,{" "}
+          <span className="font-[family-name:var(--font-instrument-serif)] italic underline decoration-white/30 underline-offset-[6px]">
+            in one place.
+          </span>
         </h2>
         <p className="mt-4 max-w-xl text-base leading-relaxed text-neutral-400">
           Stop piecing it together from YouTube and Twitter threads. Here's

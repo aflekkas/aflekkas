@@ -12,7 +12,6 @@ import {
   Volume2,
   VolumeX,
 } from "lucide-react";
-import { DotPattern } from "@/components/ui/dot-pattern";
 import { cn } from "@/lib/utils";
 import { CtaButton } from "./cta-button";
 
@@ -248,8 +247,9 @@ function VideoPlayer() {
             alt=""
             className="absolute inset-0 h-full w-full object-cover blur-sm brightness-90"
           />
-          <div className="relative flex size-20 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:border-white/30 hover:bg-white/10">
+          <div className="relative flex size-20 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
             <div className="absolute -inset-2 rounded-full border border-white/[0.08]" />
+            <div className="absolute -inset-2 animate-ping rounded-full border border-white/10 [animation-duration:2.5s]" />
             <Play className="ml-1 size-8 fill-white text-white" />
           </div>
         </button>
@@ -367,21 +367,7 @@ export function Hero() {
   }, [mounted, shuffled.length]);
 
   return (
-    <section className="relative overflow-hidden bg-background">
-      {/* Dot pattern background with radial fade */}
-      <DotPattern
-        cr={1.2}
-        width={24}
-        height={24}
-        className={cn(
-          "text-white/[0.15]",
-          "[mask-image:radial-gradient(ellipse_at_center,white_10%,transparent_70%)]",
-        )}
-      />
-
-      {/* Top ambient glow */}
-      <div className="pointer-events-none absolute top-0 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-white/[0.03] blur-[120px]" />
-
+    <section className="relative">
       <div className="relative z-10 mx-auto max-w-4xl px-6 pt-20 pb-16 sm:pt-32 sm:pb-16">
         {/* Headline */}
         <h1 className="text-4xl leading-[1.12] font-medium tracking-normal text-white sm:text-5xl md:text-6xl lg:text-7xl">
