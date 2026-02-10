@@ -24,6 +24,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `bug-fixer` | Investigate and fix bugs, runtime errors, build failures |
 | `general-purpose` | Multi-step research, web lookups, anything that doesn't fit above |
 | `Bash` | Git operations, running commands, installs |
+| `supabase-agent` | **All Supabase work**: migrations, schema changes, Edge Functions, SQL queries. Must regenerate `src/types/supabase.ts` after any schema change. |
 
 **How to orchestrate well:**
 - Launch independent sub-agents **in parallel** (single message, multiple Task calls)
@@ -118,7 +119,7 @@ The long-term plan is to **replace Skool with a fully custom-built platform** on
 - **Custom features**: AI-powered features baked in, personalized dashboards, custom onboarding
 - **Data ownership**: Full analytics, retargeting pixels, email lists as an asset
 
-**Current state:** CTAs on the `/ai` page now open a **waitlist dialog** (email capture) instead of linking to Skool. Backend storage for waitlist emails is not yet wired up (TODO: Supabase, Resend, or similar).
+**Current state:** CTAs on the `/ai` page now open a **waitlist dialog** (email capture) instead of linking to Skool. Waitlist emails are stored in the `public.waitlist` table in Supabase via a Server Action.
 
 **Tech stack for platform (future):** Next.js + Supabase (auth, DB, realtime, storage) + Stripe (subscriptions) + Mux (video hosting/streaming)
 
@@ -126,6 +127,9 @@ The long-term plan is to **replace Skool with a fully custom-built platform** on
 
 - **Prefer server-side over client-side.** Use Server Components, Server Actions, and server-side data fetching by default. Only use client components (`"use client"`) when you need interactivity (event handlers, hooks, browser APIs). Keep data mutations in Server Actions, not client-side API calls.
 - **Supabase project:** `mawsuyyjxqykenglouky` (region: us-east-1). Server-side client lives in `src/lib/supabase/server.ts`, browser client in `src/lib/supabase/client.ts`.
+- **Delegate all Supabase work to the `supabase-agent`.** Any task that touches the database schema (migrations, tables, indexes), Edge Functions, or Supabase configuration must be delegated to the supabase agent via the Task tool. Do not run Supabase MCP tools (apply_migration, execute_sql, etc.) directly from the orchestrator.
+- **RLS strategy: enable but never create policies.** Every table must have RLS enabled (no exceptions), but do NOT create any RLS policies. Instead, all data access happens through Server Actions using the admin client (`src/lib/supabase/admin.ts`), which uses the service role key (`SUPABASE_SECRET_KEY`) and bypasses RLS. This keeps the database locked down from direct client access while giving server-side code full access. Never use the browser client or the SSR client (publishable key) for data mutations.
+- **Keep `src/types/supabase.ts` in sync.** After any schema change, regenerate types using the Supabase MCP `generate_typescript_types` tool and write the output to `src/types/supabase.ts`. All Supabase clients should be typed with `Database` from this file.
 
 ## Copy Style
 

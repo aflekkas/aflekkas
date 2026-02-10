@@ -9,7 +9,7 @@ import {
 import { CtaButton } from "./cta-button";
 import { CURRENT_PRICE_MO, CURRENT_TIER, NEXT_PRICE_MO } from "@/lib/constants/pricing";
 
-const faqs = [
+const faqs: { q: string; a: React.ReactNode }[] = [
   {
     q: "What if I'm just getting started with AI?",
     a: "That's exactly when this is most valuable. The courses start from the basics and the community is full of people at every level. You'll skip months of trial and error and start building with workflows that actually work.",
@@ -39,8 +39,24 @@ const faqs = [
     a: `Yes. The price starts at ${CURRENT_PRICE_MO} for the ${CURRENT_TIER.members.toLowerCase()} members, then goes to ${NEXT_PRICE_MO}, and continues to increase as the community grows. But once you lock in your price, it stays the same forever, no matter how high it goes for new members.`,
   },
   {
-    q: "Wait, was this landing page built with AI?",
-    a: "Yes. I built this entire page in a day with Claude Code using some of the same frontend tools I teach inside The Lab. Pretty meta, right? ;)",
+    q: "Wait, was this website built with AI?",
+    a: (
+      <>
+        Yes. Every pixel. Don&apos;t believe me?{" "}
+        <a
+          href="https://github.com/aflekkas/aflekkas"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="underline underline-offset-4 hover:text-white transition-colors"
+        >
+          Here&apos;s the entire source code
+        </a>
+        . Go check the commit history. And this is just the landing page. I&apos;m
+        building the entire course platform with AI too. The workflows and tools I
+        use to do it? That&apos;s what you learn inside The Lab.
+      </>
+    ),
   },
 ];
 

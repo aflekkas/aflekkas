@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { track } from "@vercel/analytics";
+import { joinWaitlist } from "../actions";
 import {
   Dialog,
   DialogContent,
@@ -33,18 +34,21 @@ export function WaitlistProvider({ children }: { children: React.ReactNode }) {
     track("waitlist_dialog_open");
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
 
     setState("submitting");
 
-    // TODO: Wire up backend (Supabase, Resend, etc.)
-    // Simulating submission for now
-    setTimeout(() => {
-      setState("success");
-      track("waitlist_submit", { email });
-    }, 800);
+    const result = await joinWaitlist(email);
+
+    if (result.error) {
+      setState("idle");
+      return;
+    }
+
+    setState("success");
+    track("waitlist_submit", { email });
   };
 
   const handleOpenChange = (open: boolean) => {
