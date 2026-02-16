@@ -6,7 +6,7 @@ export async function updateSession(request: NextRequest) {
     request,
   });
 
-  createServerClient(
+  const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
     {
@@ -28,6 +28,9 @@ export async function updateSession(request: NextRequest) {
       },
     }
   );
+
+  // Refresh the auth token
+  await supabase.auth.getUser();
 
   return supabaseResponse;
 }
