@@ -302,6 +302,18 @@ const defaultItemAnimationVariants: Record<
   },
 }
 
+// Cache for motion components to avoid recreating during render
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const motionComponentCache = new Map<ElementType, any>()
+
+function getMotionComponent<T extends ElementType>(Component: T) {
+  if (!motionComponentCache.has(Component)) {
+    motionComponentCache.set(Component, motion.create(Component))
+  }
+  return motionComponentCache.get(Component)! as ReturnType<typeof motion.create<T>>
+}
+
+/* eslint-disable react-hooks/static-components */
 const TextAnimateBase = ({
   children,
   delay = 0,
@@ -317,7 +329,7 @@ const TextAnimateBase = ({
   accessible = true,
   ...props
 }: TextAnimateProps) => {
-  const MotionComponent = motion.create(Component)
+  const MotionComponent = getMotionComponent(Component)
 
   let segments: string[] = []
   switch (by) {
@@ -421,6 +433,7 @@ const TextAnimateBase = ({
     </AnimatePresence>
   )
 }
+/* eslint-enable react-hooks/static-components */
 
 // Export the memoized version
 export const TextAnimate = memo(TextAnimateBase)

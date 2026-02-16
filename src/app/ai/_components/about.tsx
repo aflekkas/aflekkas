@@ -73,7 +73,7 @@ export function About() {
 
             <BlurFade delay={0.2} inView>
               <p className="text-base leading-relaxed text-neutral-300">
-                I treated AI as a co-founder, not a toy. That's how I went from
+                I treated AI as a co-founder, not a toy. That&apos;s how I went from
                 zero to 2M+ monthly views and a profitable business. Every
                 workflow, every piece of content, every system was built with
                 the tools and strategies I now share inside The Lab.
@@ -84,7 +84,7 @@ export function About() {
               <p className="text-base leading-relaxed text-neutral-300">
                 When I started, I wasted months stitching together free content
                 and testing tools that went nowhere. The Lab is everything I
-                had to figure out the hard way, packaged so you don't have to.
+                had to figure out the hard way, packaged so you don&apos;t have to.
               </p>
             </BlurFade>
           </div>

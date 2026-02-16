@@ -36,7 +36,7 @@ export function PricingCta() {
 
       <div className="relative z-10 mx-auto max-w-lg px-6 text-center">
         <p className="text-xs font-mono uppercase tracking-[0.2em] text-neutral-400">
-          Lekkas' AI Lab
+          Lekkas&apos; AI Lab
         </p>
 
         {/* Pricing card */}

@@ -349,22 +349,19 @@ function VideoPlayer() {
 }
 
 export function Hero() {
-  const [shuffled, setShuffled] = useState(headlines);
+  const [shuffled] = useState(() => shuffleArray(headlines));
   const [index, setIndex] = useState(0);
-  const [mounted, setMounted] = useState(false);
+  const mountedRef = useRef(false);
 
   useEffect(() => {
-    setShuffled(shuffleArray(headlines));
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
+    mountedRef.current = true;
     const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % shuffled.length);
+      if (mountedRef.current) {
+        setIndex((prev) => (prev + 1) % shuffled.length);
+      }
     }, 3000);
     return () => clearInterval(interval);
-  }, [mounted, shuffled.length]);
+  }, [shuffled.length]);
 
   return (
     <section className="relative">
@@ -406,7 +403,7 @@ export function Hero() {
             className="group/sec inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-neutral-800 px-8 text-sm font-medium text-white transition-colors hover:bg-neutral-700"
           >
             <span className="sm:hidden">See more</span>
-            <span className="hidden sm:inline">See what's inside</span>
+            <span className="hidden sm:inline">See what&apos;s inside</span>
             <ChevronDown className="size-4 transition-transform duration-200 group-hover/sec:translate-y-0.5" />
           </a>
         </div>

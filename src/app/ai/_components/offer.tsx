@@ -77,7 +77,7 @@ export function Offer() {
           </span>
         </h2>
         <p className="mt-4 max-w-xl text-base leading-relaxed text-neutral-400">
-          Stop piecing it together from YouTube and Twitter threads. Here's
+          Stop piecing it together from YouTube and Twitter threads. Here&apos;s
           what you get from day one.
         </p>
 
