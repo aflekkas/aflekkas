@@ -60,9 +60,9 @@ bunx shadcn@latest add <component-name>
 
 ### Lekkas' AI Lab -- `/ai` page
 
-The `/ai` page is a conversion-focused sales page for **Lekkas' AI Lab**, a paid community targeting builders and founders who want to use AI to grow their businesses. The community is hosted on **Whop**.
+The `/ai` page is a conversion-focused sales page for **Lekkas' AI Lab**, a paid community targeting builders and founders who want to use AI to grow their businesses. The community is hosted on **Skool**.
 
-**Traffic flow:** Instagram/TikTok -> ManyChat -> this page -> Whop
+**Traffic flow:** Instagram/TikTok -> ManyChat -> this page -> Skool
 
 **What the community offers:**
 - AI playbooks & workflows for automating business ops, content, sales
@@ -74,7 +74,7 @@ The `/ai` page is a conversion-focused sales page for **Lekkas' AI Lab**, a paid
 
 **Who's behind it:** @aflekkas, a founder who built a $50K/mo company using AI, 2M+ monthly views, no dev team.
 
-**Page structure:** Hero (rotating headlines) -> Social Proof Bar -> Problem -> Offer -> About -> Testimonials -> Pricing CTA -> FAQ. All CTAs link to the Whop URL defined in `src/lib/constants/links.ts`.
+**Page structure:** Hero (rotating headlines) -> Social Proof Bar -> Problem -> Offer -> About -> Testimonials -> Pricing CTA -> FAQ. All CTAs link to the Skool URL defined in `src/lib/constants/links.ts`.
 
 ## Copy Style
 
