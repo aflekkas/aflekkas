@@ -4,16 +4,14 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
   ChevronDown,
-  Maximize,
-  Minimize,
   Pause,
   Play,
   RotateCcw,
   Volume2,
-  VolumeX,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { CtaButton } from "./cta-button";
+import { CTA_APPEAR_TIME } from "@/lib/constants/vsl";
 
 const headlines = [
   "a $50K/mo business",
@@ -35,37 +33,34 @@ function shuffleArray<T>(arr: T[]): T[] {
   return shuffled;
 }
 
-function formatTime(seconds: number) {
-  const m = Math.floor(seconds / 60);
-  const s = Math.floor(seconds % 60);
-  return `${m}:${s.toString().padStart(2, "0")}`;
+function mapProgress(real: number): number {
+  const t = Math.max(0, Math.min(1, real));
+  return 1 - Math.pow(1 - t, 2); // easeOutQuad
 }
 
 function VideoPlayer() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
   const hideTimerRef = useRef<ReturnType<typeof setTimeout>>(null);
   const rafRef = useRef<number>(0);
-  const draggingRef = useRef(false);
 
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [showControls, setShowControls] = useState(true);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-  const [hasStarted, setHasStarted] = useState(false);
+  const [hasStarted, setHasStarted] = useState(true);
   const [hasEnded, setHasEnded] = useState(false);
-  const [isScrubbing, setIsScrubbing] = useState(false);
+  const [showUnmuteOverlay, setShowUnmuteOverlay] = useState(true);
+  const [showTimedCta, setShowTimedCta] = useState(false);
 
-  const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
+  const progress = mapProgress(duration > 0 ? currentTime / duration : 0) * 100;
 
   const scheduleHide = useCallback(() => {
     if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
     setShowControls(true);
     hideTimerRef.current = setTimeout(() => {
-      if (videoRef.current && !videoRef.current.paused && !draggingRef.current) {
+      if (videoRef.current && !videoRef.current.paused) {
         setShowControls(false);
       }
     }, 2500);
@@ -75,17 +70,12 @@ function VideoPlayer() {
     const v = videoRef.current;
     if (!v) return;
     if (v.paused) {
-      if (!hasStarted) {
-        v.muted = false;
-        setMuted(false);
-        setHasStarted(true);
-      }
       v.play();
       setHasEnded(false);
     } else {
       v.pause();
     }
-  }, [hasStarted]);
+  }, []);
 
   const replay = useCallback(() => {
     const v = videoRef.current;
@@ -93,65 +83,18 @@ function VideoPlayer() {
     v.currentTime = 0;
     v.play();
     setHasEnded(false);
+    setShowTimedCta(false);
   }, []);
 
-  const toggleMute = useCallback(() => {
+  const handleUnmute = useCallback(() => {
     const v = videoRef.current;
     if (!v) return;
-    v.muted = !v.muted;
-    setMuted(v.muted);
+    v.currentTime = 0;
+    v.muted = false;
+    setMuted(false);
+    setShowUnmuteOverlay(false);
+    v.play();
   }, []);
-
-  const toggleFullscreen = useCallback(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    } else {
-      el.requestFullscreen();
-    }
-  }, []);
-
-  // Seek to a position based on mouse/pointer X relative to progress bar
-  const seekToPosition = useCallback((clientX: number) => {
-    const v = videoRef.current;
-    const bar = progressRef.current;
-    if (!v || !bar || !v.duration) return;
-    const rect = bar.getBoundingClientRect();
-    const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
-    v.currentTime = ratio * v.duration;
-    setCurrentTime(v.currentTime);
-  }, []);
-
-  // Drag-to-scrub handlers
-  const handleScrubStart = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
-      e.preventDefault();
-      draggingRef.current = true;
-      setIsScrubbing(true);
-      seekToPosition(e.clientX);
-    },
-    [seekToPosition],
-  );
-
-  useEffect(() => {
-    if (!isScrubbing) return;
-
-    const handleMove = (e: MouseEvent) => {
-      seekToPosition(e.clientX);
-    };
-    const handleUp = () => {
-      draggingRef.current = false;
-      setIsScrubbing(false);
-    };
-
-    window.addEventListener("mousemove", handleMove);
-    window.addEventListener("mouseup", handleUp);
-    return () => {
-      window.removeEventListener("mousemove", handleMove);
-      window.removeEventListener("mouseup", handleUp);
-    };
-  }, [isScrubbing, seekToPosition]);
 
   // Smooth progress updates via requestAnimationFrame
   useEffect(() => {
@@ -159,9 +102,10 @@ function VideoPlayer() {
     if (!v) return;
 
     const tick = () => {
-      if (!draggingRef.current && v.currentTime !== undefined) {
+      if (v.currentTime !== undefined) {
         setCurrentTime(v.currentTime);
       }
+      if (v.currentTime >= CTA_APPEAR_TIME) setShowTimedCta(true);
       rafRef.current = requestAnimationFrame(tick);
     };
 
@@ -192,7 +136,14 @@ function VideoPlayer() {
       setHasEnded(true);
       setShowControls(true);
     };
-    const onFSChange = () => setIsFullscreen(!!document.fullscreenElement);
+    const onVolumeChange = () => {
+      if (!v.muted) {
+        setMuted(false);
+        setShowUnmuteOverlay(false);
+      } else {
+        setMuted(true);
+      }
+    };
 
     v.addEventListener("play", onPlay);
     v.addEventListener("pause", onPause);
@@ -200,7 +151,7 @@ function VideoPlayer() {
     v.addEventListener("durationchange", onDuration);
     v.addEventListener("canplay", onDuration);
     v.addEventListener("ended", onEnded);
-    document.addEventListener("fullscreenchange", onFSChange);
+    v.addEventListener("volumechange", onVolumeChange);
 
     // If metadata is already loaded (cached video)
     if (v.duration && isFinite(v.duration)) {
@@ -214,7 +165,7 @@ function VideoPlayer() {
       v.removeEventListener("durationchange", onDuration);
       v.removeEventListener("canplay", onDuration);
       v.removeEventListener("ended", onEnded);
-      document.removeEventListener("fullscreenchange", onFSChange);
+      v.removeEventListener("volumechange", onVolumeChange);
     };
   }, [scheduleHide]);
 
@@ -223,7 +174,7 @@ function VideoPlayer() {
       ref={containerRef}
       className="group relative overflow-hidden rounded-2xl border border-white/10 bg-black"
       onMouseMove={scheduleHide}
-      onMouseLeave={() => playing && !draggingRef.current && setShowControls(false)}
+      onMouseLeave={() => playing && setShowControls(false)}
     >
       {/* Video */}
       <video
@@ -232,28 +183,67 @@ function VideoPlayer() {
         className="aspect-video w-full cursor-pointer"
         playsInline
         muted
+        autoPlay
         preload="auto"
-        onClick={togglePlay}
+        onClick={showUnmuteOverlay ? handleUnmute : togglePlay}
       />
 
-      {/* Blurred thumbnail + play overlay (before first play) */}
-      {!hasStarted && (
-        <button
-          onClick={togglePlay}
-          className="absolute inset-0 z-20 flex cursor-pointer items-center justify-center"
-        >
-          <img
-            src="/landing/vsl/thumbnail.png"
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover blur-sm brightness-90"
-          />
-          <div className="relative flex size-20 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-transform duration-300 hover:scale-105">
-            <div className="absolute -inset-2 rounded-full border border-white/[0.08]" />
-            <div className="absolute -inset-2 animate-ping rounded-full border border-white/10 [animation-duration:2.5s]" />
-            <Play className="ml-1 size-8 fill-white text-white" />
-          </div>
-        </button>
-      )}
+      {/* Unmute overlay */}
+      <AnimatePresence>
+        {showUnmuteOverlay && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute inset-0 z-10 flex cursor-pointer flex-col items-center justify-center bg-black/60"
+            onClick={handleUnmute}
+          >
+            <div className="relative">
+              <div className="absolute inset-0 animate-ping rounded-full bg-white/20" />
+              <div className="relative rounded-full bg-white/20 p-5">
+                <Volume2 className="size-8 text-white" />
+              </div>
+            </div>
+            <p className="mt-4 text-sm font-medium text-white/80">
+              Click to unmute
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Centered pause overlay */}
+      <AnimatePresence>
+        {!playing && !hasEnded && !showUnmuteOverlay && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="absolute inset-0 z-[15] flex cursor-pointer items-center justify-center"
+            onClick={togglePlay}
+          >
+            <div className="rounded-full bg-black/50 p-4">
+              <Play className="size-10 text-white" />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Timed CTA */}
+      <AnimatePresence>
+        {showTimedCta && !hasEnded && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ duration: 0.4 }}
+            className="absolute inset-x-0 bottom-14 z-20 flex justify-center"
+          >
+            <CtaButton />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* End-of-video CTA overlay */}
       <AnimatePresence>
@@ -286,72 +276,45 @@ function VideoPlayer() {
       <div
         className={cn(
           "absolute inset-x-0 bottom-0 z-20 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-5 pb-4 pt-14 transition-opacity duration-300",
-          showControls && hasStarted && !hasEnded ? "opacity-100" : hasStarted && !hasEnded ? "opacity-0" : "opacity-0",
+          showControls && hasStarted && !hasEnded && !showUnmuteOverlay
+            ? "opacity-100"
+            : "opacity-0 pointer-events-none",
         )}
       >
-        {/* Progress bar */}
-        <div
-          ref={progressRef}
-          className={cn(
-            "group/progress relative mb-4 h-1.5 w-full cursor-pointer rounded-full bg-white/20 transition-[height] hover:h-2",
-            isScrubbing && "h-2",
-          )}
-          onMouseDown={handleScrubStart}
-        >
+        {/* Progress bar (non-interactive) */}
+        <div className="mb-4 h-1 w-full rounded-full bg-white/20">
           <div
-            className="h-full rounded-full bg-white"
+            className="h-full rounded-full bg-white transition-[width] duration-300 ease-linear"
             style={{ width: `${progress}%` }}
-          >
-            <div className={cn(
-              "absolute top-1/2 size-4 -translate-y-1/2 rounded-full bg-white shadow-sm transition-opacity",
-              isScrubbing ? "opacity-100" : "opacity-0 group-hover/progress:opacity-100",
-            )} style={{ left: `calc(${progress}% - 8px)` }} />
-          </div>
+          />
         </div>
 
         {/* Controls row */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center">
           <button
             onClick={togglePlay}
-            className="cursor-pointer text-white/90 transition-colors hover:text-white"
+            className="cursor-pointer text-white/70 transition-colors hover:text-white"
           >
-            {playing ? <Pause className="size-6" /> : <Play className="size-6" />}
-          </button>
-
-          <button
-            onClick={toggleMute}
-            className="cursor-pointer text-white/90 transition-colors hover:text-white"
-          >
-            {muted ? <VolumeX className="size-6" /> : <Volume2 className="size-6" />}
-          </button>
-
-          <span className="text-sm tabular-nums text-white/60">
-            {formatTime(currentTime)} / {formatTime(duration)}
-          </span>
-
-          <div className="flex-1" />
-
-          <button
-            onClick={toggleFullscreen}
-            className="cursor-pointer text-white/90 transition-colors hover:text-white"
-          >
-            {isFullscreen ? (
-              <Minimize className="size-6" />
+            {playing ? (
+              <Pause className="size-5" />
             ) : (
-              <Maximize className="size-6" />
+              <Play className="size-5" />
             )}
           </button>
         </div>
       </div>
-
     </div>
   );
 }
 
 export function Hero() {
-  const [shuffled] = useState(() => shuffleArray(headlines));
+  const [shuffled, setShuffled] = useState(headlines);
   const [index, setIndex] = useState(0);
   const mountedRef = useRef(false);
+
+  useEffect(() => {
+    setShuffled(shuffleArray(headlines));
+  }, []);
 
   useEffect(() => {
     mountedRef.current = true;
@@ -365,7 +328,7 @@ export function Hero() {
 
   return (
     <section className="relative">
-      <div className="relative z-10 mx-auto max-w-4xl px-6 pt-20 pb-16 sm:pt-32 sm:pb-16">
+      <div className="relative z-10 mx-auto max-w-4xl px-6 pt-20 pb-6 sm:pt-32 sm:pb-8">
         {/* Headline */}
         <h1 className="text-4xl leading-[1.12] font-medium tracking-normal text-white sm:text-5xl md:text-6xl lg:text-7xl">
           Build{" "}
@@ -395,8 +358,14 @@ export function Hero() {
           smarter, and stay ahead.
         </p>
 
+      </div>
+
+      {/* Video section */}
+      <div className="relative z-10 mx-auto max-w-5xl px-6 pb-16">
+        <VideoPlayer />
+
         {/* CTAs */}
-        <div className="mt-8 flex flex-row items-start gap-4">
+        <div className="mt-8 flex flex-row items-center gap-4">
           <CtaButton />
           <a
             href="#offer"
@@ -407,11 +376,6 @@ export function Hero() {
             <ChevronDown className="size-4 transition-transform duration-200 group-hover/sec:translate-y-0.5" />
           </a>
         </div>
-      </div>
-
-      {/* Video section */}
-      <div className="relative z-10 mx-auto max-w-5xl px-6 pb-16">
-        <VideoPlayer />
 
         {/* Bottom glow under video */}
         <div className="pointer-events-none absolute -bottom-20 left-1/2 h-[200px] w-[60%] -translate-x-1/2 rounded-full bg-white/[0.04] blur-[80px]" />

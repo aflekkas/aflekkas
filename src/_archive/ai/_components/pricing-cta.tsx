@@ -4,7 +4,6 @@ import { DotPattern } from "@/components/ui/dot-pattern";
 import { MagicCard } from "@/components/ui/magic-card";
 import { cn } from "@/lib/utils";
 import { CtaButton } from "./cta-button";
-import { PRICE_TIERS, CURRENT_TIER } from "@/lib/constants/pricing";
 import {
   BookOpen,
   Video,
@@ -52,7 +51,7 @@ export function PricingCta() {
             {/* Price */}
             <div className="flex items-baseline justify-center gap-1">
               <span className="text-5xl font-semibold text-white sm:text-6xl">
-                ${CURRENT_TIER.price}
+                $19.99
               </span>
               <span className="text-sm font-medium text-neutral-500">
                 /mo
@@ -89,7 +88,12 @@ export function PricingCta() {
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-2">
-          {PRICE_TIERS.map((tier) => (
+          {[
+            { members: "First 10", price: 19.99, active: true },
+            { members: "11-50", price: 29.99, active: false },
+            { members: "51-100", price: 49.99, active: false },
+            { members: "100+", price: 99.99, active: false },
+          ].map((tier) => (
             <div
               key={tier.members}
               className={cn(

@@ -7,7 +7,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { CtaButton } from "./cta-button";
-import { CURRENT_PRICE_MO, CURRENT_TIER, NEXT_PRICE_MO } from "@/lib/constants/pricing";
 
 const faqs: { q: string; a: React.ReactNode }[] = [
   {
@@ -36,7 +35,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "Will the price go up?",
-    a: `Yes. The price starts at ${CURRENT_PRICE_MO} for the ${CURRENT_TIER.members.toLowerCase()} members, then goes to ${NEXT_PRICE_MO}, and continues to increase as the community grows. But once you lock in your price, it stays the same forever, no matter how high it goes for new members.`,
+    a: "Yes. The price increases as the community grows. But once you lock in your price, it stays the same forever, no matter how high it goes for new members.",
   },
   {
     q: "Wait, was this website built with AI?",

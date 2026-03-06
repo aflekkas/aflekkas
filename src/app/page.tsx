@@ -4,16 +4,14 @@ import { About } from "./_components/about";
 import { Faq } from "./_components/faq";
 import { Hero } from "./_components/hero";
 import { Offer } from "./_components/offer";
-import { PricingCta } from "./_components/pricing-cta";
 import { Problem } from "./_components/problem";
 import { Testimonials } from "./_components/testimonials";
-import { CURRENT_PRICE_MO } from "@/lib/constants/pricing";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Agent Lab | A Private AI Community for Builders",
-  description: `The private AI community for builders who want to move faster, build smarter, and stay ahead. ${CURRENT_PRICE_MO}.`,
+  description: "The private AI community for builders who want to move faster, build smarter, and stay ahead.",
 };
 
 export default function Home() {
@@ -34,9 +32,8 @@ export default function Home() {
         <Problem />
       </div>
       <Offer />
-      <About />
       <Testimonials />
-      <PricingCta />
+      <About />
       <Faq />
     </main>
   );
