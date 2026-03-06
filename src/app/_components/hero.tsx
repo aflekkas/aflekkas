@@ -13,25 +13,6 @@ import { cn } from "@/lib/utils";
 import { CtaButton } from "./cta-button";
 import { CTA_APPEAR_TIME } from "@/lib/constants/vsl";
 
-const headlines = [
-  "a $50K/mo business",
-  "your content engine",
-  "your own AI tools",
-  "an AI employee",
-  "your unfair advantage",
-  "AI workflows",
-  "an AI empire",
-  "your sales machine",
-];
-
-function shuffleArray<T>(arr: T[]): T[] {
-  const shuffled = [...arr];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled;
-}
 
 function mapProgress(real: number): number {
   const t = Math.max(0, Math.min(1, real));
@@ -297,47 +278,14 @@ function VideoPlayer() {
 }
 
 export function Hero() {
-  const [shuffled, setShuffled] = useState(headlines);
-  const [index, setIndex] = useState(0);
-  const mountedRef = useRef(false);
-
-  useEffect(() => {
-    setShuffled(shuffleArray(headlines));
-  }, []);
-
-  useEffect(() => {
-    mountedRef.current = true;
-    const interval = setInterval(() => {
-      if (mountedRef.current) {
-        setIndex((prev) => (prev + 1) % shuffled.length);
-      }
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [shuffled.length]);
-
   return (
     <section className="relative">
       <div className="relative z-10 mx-auto max-w-5xl px-6 pt-20 pb-6 sm:pt-32 sm:pb-8">
         {/* Headline */}
         <h1 className="text-4xl leading-[1.12] font-medium tracking-normal text-white sm:text-5xl md:text-6xl lg:text-7xl">
-          Build{" "}
-          <span className="relative inline-flex align-baseline">
-            {/* Hidden sizer, renders longest phrase to hold width */}
-            <span className="invisible whitespace-nowrap font-[family-name:var(--font-instrument-serif)] italic">
-              your unfair advantage
-            </span>
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, filter: "blur(8px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                exit={{ opacity: 0, filter: "blur(8px)" }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="absolute inset-0 whitespace-nowrap font-[family-name:var(--font-instrument-serif)] italic underline decoration-white/30 underline-offset-[6px]"
-              >
-                {shuffled[index]}
-              </motion.span>
-            </AnimatePresence>
+          Learn AI agents,{" "}
+          <span className="font-[family-name:var(--font-instrument-serif)] italic">
+            build anything
           </span>
         </h1>
 
