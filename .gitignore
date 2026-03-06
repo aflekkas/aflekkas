@@ -41,3 +41,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 public/vsl_original.mp4
+public/landing/vsl/vsl.mp4

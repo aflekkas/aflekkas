@@ -179,7 +179,7 @@ function VideoPlayer() {
       {/* Video */}
       <video
         ref={videoRef}
-        src="/landing/vsl/vsl.mp4"
+        src="https://pub-bf33361d545a42aeaa98b0b4ce54cbb1.r2.dev/videos/VSL.mp4"
         className="aspect-video w-full cursor-pointer"
         playsInline
         muted
@@ -328,7 +328,7 @@ export function Hero() {
 
   return (
     <section className="relative">
-      <div className="relative z-10 mx-auto max-w-4xl px-6 pt-20 pb-6 sm:pt-32 sm:pb-8">
+      <div className="relative z-10 mx-auto max-w-5xl px-6 pt-20 pb-6 sm:pt-32 sm:pb-8">
         {/* Headline */}
         <h1 className="text-4xl leading-[1.12] font-medium tracking-normal text-white sm:text-5xl md:text-6xl lg:text-7xl">
           Build{" "}
